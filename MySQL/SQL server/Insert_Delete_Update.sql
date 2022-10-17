@@ -26,10 +26,7 @@ insert KhachHang (MaKH,Ten,Ngaysinh,gioitinh,diachi,tienluong)values( 14,N'Ho Ph
 '20030909',0,'DaNang',5000)
 insert KhachHang (MaKH,Ten,Ngaysinh,gioitinh,diachi,tienluong)values( 15,N'Ho Phuong Thao',
 '20030909',0,'DaNang',10000)
-
--- xóa toàn bộ dữ liệu các cột trong bảng khách hàng 
-DELETE FROM KhachHang; 
-
+ 
 -- xóa dòng trong bảng (phải lấy 1 giá trị riêng nằm trong 1 cột để xóa dòng)
 DELETE FROM KhachHang WHERE Ten=N'ho phuong thao'; 
 DELETE FROM KhachHang WHERE Ten=N'Hồ Phương Thảo'; 
@@ -60,12 +57,6 @@ go
 update KhachHang set Ngaysinh = GETDATE() where gioitinh = 1 and Ten= N'Tran The Tuong';
 update KhachHang set Ngaysinh = GETDATE() where gioitinh = 0 and Ten= N'Ho Phuong Thao';
 
---xóa cột trong bảng 
-alter table KhachHang 
-drop COLUMN tienluong
-
-alter table KhachHang add SoTien float      --thêm cột SoTien vào bảng
-
 -- update dữ liệu vào cột SoTien
 update KhachHang set SoTien = 1000000000 where gioitinh = 0 and Ten= N'Hồ Phương Thảo';
 update KhachHang set SoTien = 1000000000 where gioitinh = 1 and Ten= N'Trần Thế Tường';
@@ -73,8 +64,15 @@ go
 update KhachHang set SoTien = 0 where gioitinh = 0 and Ten=N'Ho Phuong Thao';
 update KhachHang set SoTien = 0 where gioitinh = 1 and Ten=N'Tran The Tuong';
 go
+--xóa cột trong bảng 
+alter table KhachHang 
+drop COLUMN tienluong
 
-select * from KhachHang -- truy vấn dữ liệu của toàn bộ bảng KhachHang
+alter table KhachHang add SoTien float      --thêm cột SoTien vào bảng
+-- xóa toàn bộ dữ liệu các cột trong bảng khách hàng 
+DELETE FROM KhachHang;
+-- truy vấn dữ liệu của toàn bộ bảng KhachHang
+select * from KhachHang 
 
 
 
