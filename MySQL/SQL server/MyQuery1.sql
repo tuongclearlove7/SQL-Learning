@@ -1,4 +1,9 @@
-﻿create table KhachHang(
+﻿create database ClientDB 
+go
+use ClientDB  
+go  
+
+create table KhachHang(
 	MaKH INT,
 	Ten nvarchar(50),
 	Ngaysinh date,
