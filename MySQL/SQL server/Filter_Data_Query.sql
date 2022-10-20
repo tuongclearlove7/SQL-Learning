@@ -87,15 +87,33 @@ insert into GiaoVien(MaGV,TenGV,diachi,ngaysinh,gioitinh,MaMH)values('GV04',
 insert into HocSinh(MaHS,MaLop,TenHS)values('MaHS01','MaLop01',N'Trần Thế Tường 1')
 insert into HocSinh(MaHS,MaLop,TenHS)values('MaHS02','MaLop02',N'Hồ Phương Thảo 2')
 insert into HocSinh(MaHS,MaLop,TenHS)values('MaHS03','MaLop03',N'Clearlove 7')
-insert into HocSinh(MaHS,MaLop,TenHS)values('MaHS04','MaLop04',N'Clearlove 7')
+insert into HocSinh(MaHS,MaLop,TenHS)values('MaHS04','MaLop04',N'Rose 7')
 
 update GiaoVien set ngaysinh = GETDATE()
 update GiaoVien set ngaysinh = '20030909' where TenGV = N'Hồ Phương Thảo'
 update GiaoVien set ngaysinh = '20030909' where TenGV = N'Ho Phuong Thao'
+update Lop set MaLop = 'MaLop01' where TenLop = N'lớp 1'
+update Lop set MaLop = 'MaLop02' where TenLop = N'lớp 2'
+update Lop set MaLop = 'MaLop03' where TenLop = N'lớp 3'
+update HocSinh set TenHS = 'Rose 9' where MaHS = 'MaHS04'
+update HocSinh set MaLop = 'MaLop01' where MaHS = 'MaHS01'
+update HocSinh set GT_HS = 1 where TenHS = N'Trần Thế Tường 1'
+update HocSinh set GT_HS = 0 where TenHS = N'Hồ Phương Thảo 2'
+update HocSinh set GT_HS = 1 where TenHS = N'Clearlove 7'
+update HocSinh set GT_HS = 0 where TenHS = N'Rose 9'
+
+update giaovien set GT_GV = 0
 
 alter table giaovien 
 drop COLUMN Sex
-alter table giaovien add gioitinh bit
+
+alter table giaovien
+drop COLUMN gioitinh
+alter table giaovien add GT_GV bit
+
+alter table HocSinh
+drop COLUMN gioitinh
+alter table HocSinh add GT_HS bit
 
 alter table Monhoc 
 drop COLUMN Ten
@@ -112,6 +130,7 @@ alter table GiaoVien add TenGV Nvarchar(100)
 alter table HocSinh
 drop COLUMN ten
 alter table HocSinh add TenHS Nvarchar(100)
+alter table HocSinh add gioitinh bit
 
 delete from Lop
 delete from MonHoc
@@ -141,8 +160,8 @@ select MaGV, TenGV, TenMH from GiaoVien, MonHoc
 select GV.MaGV, GV.TenGV, MH.TenMH 
 from GiaoVien as GV, MonHoc as MH
 
-select MaGV, TenLop, TenGV, TenMH, TenHS from GiaoVien, MonHoc, Lop, HocSinh
-where tenmh = N'Bộ môn 1'
+select MaGV, TenLop, TenGV, TenMH, TenHS , diachi, ngaysinh, GT_GV from GiaoVien, MonHoc, Lop, HocSinh
+where GT_GV = 0
 
 
 
