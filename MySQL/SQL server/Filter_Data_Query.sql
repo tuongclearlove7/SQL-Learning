@@ -160,6 +160,7 @@ select MaGV, TenGV, TenMH from GiaoVien, MonHoc
 select GV.MaGV, GV.TenGV, MH.TenMH 
 from GiaoVien as GV, MonHoc as MH
 
+--select all
 select MaGV, TenLop, TenGV, TenMH, TenHS , diachi, ngaysinh, GT_GV from GiaoVien, MonHoc, Lop, HocSinh
 where GT_GV = 0
 
