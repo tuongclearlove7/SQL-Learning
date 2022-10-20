@@ -1,4 +1,9 @@
-﻿-- thêm dữ liệu
+﻿create database ClientDB 
+go
+use ClientDB  
+go 
+
+-- thêm dữ liệu
 -- kiểu ký tự hoặc ngày cần để trong cặp nháy đơn 
 -- nếu có tiếng việt thì cần để chữ N'' trc dấu nháy đơn 
 -- hàm GETDATE() là lấy thời gian hiện tại
@@ -78,7 +83,7 @@ DELETE FROM KhachHang;
 
 --truy vấn cột (trường) SoTien trong bảng khách hàng
 select gioitinh from KhachHang 
-where SoTien < 1000 --truy vấn cột (trường) SoTien bằng điều kiện
+where SoTien > 1000 --truy vấn cột (trường) SoTien bằng điều kiện
 
 --truy vấn các cột trong bảng (nhiều cột)
 select MaKH, Ten,SoTien from KhachHang 
@@ -94,9 +99,9 @@ where Ten = N'Trần Thế Tường';
 select MaKH, Ten, diachi, gioitinh, SoTien from KhachHang 
 where gioitinh = 0;
 select MaKH, Ten, diachi, gioitinh, SoTien from KhachHang 
-where SoTien = 0;
+where SoTien = 5000;
 select MaKH, Ten, diachi, gioitinh, SoTien from KhachHang 
-where MaKH > 10;
+where MaKH > 1;
 
 -- truy vấn dữ liệu các cột của nhiều bảng
 select * from KhachHang, Sinhvien

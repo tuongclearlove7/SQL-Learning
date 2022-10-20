@@ -40,21 +40,22 @@ insert into Lop values('k19TPM','k19TPM','Le Anh')
 insert into Lop values('k19TPM','k19TPM','The Tuong')
 insert into Lop values('k19TPM','k19TPM','Phuong Thao')
 go
-insert into SinhVien values('SV01','Le','Anh','1','2002-01-10',N'20 Le Lai DN','k26TPM')
-insert into SinhVien values('SV02',N'Tran The','Tuong','0','2002-01-10',N'20 Le Lai DN','k26TPM')
-insert into SinhVien values('SV03','Phuong','Thao','1','2002-01-10',N'20 Le Lai DN','k26TPM')
+insert SinhVien values('SV01','Le','Anh','1','2002-01-10',N'20 Le Lai DN','k26TPM')
+insert SinhVien values('SV02',N'Tran The','Tuong','0','2002-01-10',N'20 Le Lai DN','k26TPM')
+insert SinhVien values('SV03','Phuong','Thao','1','2002-01-10',N'20 Le Lai DN','k26TPM')
 go
-insert into SinhVien values('MH01','SV01',4.5,6.5)
-insert into SinhVien values('MH02','SV01',2.5,7.5)
-insert into SinhVien values('MH03','SV01',6.5,8.5)
+insert  SinhVien values('MH01','SV01',4.5,6.5)
+insert  SinhVien values('MH02','SV01',2.5,7.5)
+insert  SinhVien values('MH03','SV01',6.5,8.5)
 go
-insert into SinhVien values('MH01','SV02',3.5,9.5)
-insert into SinhVien values('MH02','SV02',5.5,8.5)
-insert into SinhVien values('MH03','SV02',6.5,7.5)
+insert  SinhVien values('MH01','SV02',3.5,9.5)
+insert  SinhVien values('MH02','SV02',5.5,8.5)
+insert  SinhVien values('MH03','SV02',6.5,7.5)
 go
 select * from SinhVien
 
 select * from Lop
+delete from Lop
 
 select * from Monhoc
 
