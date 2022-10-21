@@ -160,30 +160,43 @@ select MaGV, TenGV, TenMH from GiaoVien, MonHoc
 select GV.MaGV, GV.TenGV, MH.TenMH 
 from GiaoVien as GV, MonHoc as MH
 
-
-select MaGV, TenLop, TenGV, TenMH, TenHS , diachi, ngaysinh, GT_GV from GiaoVien, MonHoc, Lop, HocSinh
+select MaGV, TenLop, TenGV, TenMH, TenHS , diachi, ngaysinh, GT_GV 
+from GiaoVien, MonHoc, Lop, HocSinh
 where GT_GV = 0
 
+select GV.MaGV, TenGV, HS.TenHS  
+from GiaoVien as GV, HocSinh as HS
+
+-- Truy vấn có điều kiện 
+select GV.MaGV, TenGV, HS.TenHS, MH.TenMH  
+from GiaoVien as GV, HocSinh as HS, MonHoc as MH
+where GV.MaGV = MH.MaMH
+
+select GV.MaGV, GV.TenGV, HS.TenHS  from GiaoVien as GV, HocSinh as HS
+
+select GV.MaGV, TenGV, MH.TenMH  
+from GiaoVien as GV, MonHoc as MH
+where GV.MaGV = MH.MaGV
+
+select * from GiaoVien
+where GT_GV = 0 and diachi = N'DaNang'
+
+-- lấy năm hiện tại - cho năm sinh của người đó
+select * from GiaoVien
+where YEAR(getdate()) -  year(ngaysinh) > 18
+
+-- dùng điều kiện để lấy ra cột
+select TenGV, ngaysinh, YEAR(getdate()) -  year(ngaysinh) as tuoi from GiaoVien
+where YEAR(getdate()) -  year(ngaysinh) < 18
 
 
+select TenGV, ngaysinh, YEAR(getdate()) -  year(ngaysinh) as tuoi from GiaoVien
+where YEAR(getdate()) -  year(ngaysinh) > 18
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select GV.MaGV, GV.TenGV, MH.TenMH  
+from GiaoVien as GV, MonHoc as MH
+where GV.MaMH = MH.MaMH 
 
 
 
