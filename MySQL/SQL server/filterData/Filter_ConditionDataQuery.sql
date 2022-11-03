@@ -1,16 +1,6 @@
 ﻿--sử dụng databse QueryCondition
 use QueryCondition
 
-select * from THAMGIADT
-select * from KHOA
-select * from BOMON
-select * from CONGVIEC
-select * from DETAI
-select * from CHUDE
-select * from NGUOITHAN
-select * from SDT_GV
-select * from GIAOVIEN
-
 select GV.MAGV, GV.HOTEN,NT.TEN from GIAOVIEN as GV , NGUOITHAN as NT
 
 select GV.MAGV, GV.HOTEN, K.TENKHOA from GIAOVIEN as GV,BOMON as BM,KHOA as K
@@ -32,7 +22,7 @@ select * from GIAOVIEN
 where YEAR('20200101') -  year(NGSINH) > 40
 
 -- dùng điều kiện để lấy ra cột
-select HOTEN, NGSINH, YEAR(getdate()) -  year(NGSINH) as tuoi from GIAOVIEN
+select HOTEN, NGSINH, YEAR(getdate()) -  year(NGSINH) as N'tuổi' from GIAOVIEN
 where YEAR(getdate()) -  year(NGSINH) < 50
 
 select GV.MAGV, GV.HOTEN, K.TENKHOA from GIAOVIEN as GV,BOMON as BM,KHOA as K
@@ -91,12 +81,38 @@ SELECT  count(*) as N'số giáo viên khoa CNTT' FROM GIAOVIEN, KHOA
 where KHOA.MAKHOA = N'CNTT'
 
 -- 3.lấy thông tin giáo viên và  đề tài ng đó tham gia có kết quả là đạt
-SELECT  *  FROM GIAOVIEN, THAMGIADT, DETAI
-WHERE GIAOVIEN.MAGV = THAMGIADT.MAGV AND DETAI.MADT = THAMGIADT.MADT 
-and THAMGIADT.KETQUA = N'Đạt'
+SELECT  GIAOVIEN.*,KETQUA  FROM GIAOVIEN, THAMGIADT
+WHERE GIAOVIEN.MAGV = THAMGIADT.MAGV and THAMGIADT.KETQUA = N'Đạt'
 
+-- Xuất ra thông tin giáo viên mà có bắt đầu bằng chữ l
+-- dùng like so sánh chuỗi 
+-- l% sau là bắt đầu
+select * from GIAOVIEN
+where GIAOVIEN.HOTEN like 'l%' 
 
+-- Xuất ra thông tin giáo viên mà có kết thúc bằng chữ N
+-- %N trước là bắt đầu
+select * from GIAOVIEN
+where GIAOVIEN.HOTEN like '%n'
 
+-- Xuất ra thông tin giáo viên có tồn tại  chữ A
+-- syntax : %a% 
+select * from GIAOVIEN
+where GIAOVIEN.HOTEN like '%A%'
+
+-- Xuất ra thông tin giáo viên có tồn tại chữ à
+select * from GIAOVIEN
+where GIAOVIEN.HOTEN like N'%À%'
+
+select * from THAMGIADT
+select * from KHOA
+select * from BOMON
+select * from CONGVIEC
+select * from DETAI
+select * from CHUDE
+select * from NGUOITHAN
+select * from SDT_GV
+select * from GIAOVIEN
 
 
 
