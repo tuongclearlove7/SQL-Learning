@@ -45,32 +45,7 @@ update dmhang set dvt = N'Chiếc' where mahang = 'mh01'
 update hoadon set ngayhd = '2024-02-02'
 
 
-
-select * from khachhang where diachi = N'Đà Nẵng'
-select * from khachhang where diachi like N'%Đà%'
-SELECT * FROM khachhang WHERE sodt LIKE N'%0915%495%';
-
-
-SELECT * FROM khachhang WHERE hoten LIKE N'H%';
-
-SELECT * FROM dmhang WHERE dvt IN (N'thùng', N'kg');
-
-SELECT * FROM hoadon WHERE CONVERT(DATE, ngayhd) = '2024-02-02';
-
-SELECT * FROM hoadon, dmhang, chitiet WHERE hoadon.mahd = chitiet.mahd and dmhang.mahang = chitiet.mahang 
-
-SELECT * FROM hoadon, dmhang, chitiet WHERE hoadon.mahd = chitiet.mahd and dmhang.mahang = chitiet.mahang andhoadon.ngaygh = '2024-02-02' and dmhang.mahang = 'mh01';
-
-SELECT * FROM khachhang WHERE sodt LIKE N'%5';
-
-SELECT * FROM khachhang WHERE hoten LIKE N'%P' or hoten like N'%H';
-
+update hoadon set ngayhd = '2024-03-03' where mahd = 'hd02'
 
 ALTER TABLE hoadon
-ALTER COLUMN mahd VARCHAR(10);
-
-select * from khachhang
-select * from dmhang
-select * from hoadon
-select * from chitiet
-select * from nhacungcap
+ALTER COLUMN mahd VARCHAR(10)
