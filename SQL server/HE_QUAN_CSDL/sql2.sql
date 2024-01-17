@@ -20,6 +20,12 @@ VALUES('hd01', '2024-01-09T12:30:00', '2024-01-10T14:45:00', 'kh01'),
   ('hd03', '2024-01-11T15:00:00', '2024-01-12T17:20:00', 'kh03'),
   ('hd04', '2024-01-12T09:45:00', '2024-01-13T11:00:00', 'kh04');
 
+INSERT INTO hoadon(mahd, ngayhd, ngaygh, makh, loaihd)
+VALUES('hd11', '2024-01-09', '2024-01-10T14:45:00', 'kh01', 'Bán'),
+  ('hd12', '2024-01-10', '2024-01-11', 'kh02', 'Mua'),
+  ('hd13', '2024-01-11', '2024-01-12', 'kh03', 'Bán'),
+  ('hd14', '2024-01-12', '2024-01-13', 'kh04', 'Bán');
+
 INSERT INTO nhacungcap(mancc, tenncc, diachi, slton, sodt, mahang)
 VALUES('ncc01', N'Nhà cung cấp 1', N'Đà Nẵng', 10, N'09145543543', 'mh01'),
   ('ncc02', N'Nhà cung cấp 2',  N'Đà Nẵng', 20, N'0924245435', 'mh02'),
@@ -36,7 +42,6 @@ INSERT INTO chitiet(mahd, mahang, slban, dongia)
 VALUES('hd04', 'mh04', 30, 40000);
 
 
-
 update khachhang set makh = 'kh01'
 update khachhang set hoten = N'Trần Thế Tường'
 update khachhang set diachi = N'Đà Nẵng'
@@ -48,4 +53,7 @@ update hoadon set ngayhd = '2024-02-02'
 update hoadon set ngayhd = '2024-03-03' where mahd = 'hd02'
 
 ALTER TABLE hoadon
-ALTER COLUMN mahd VARCHAR(10)
+ADD loaihd NVARCHAR(10)
+
+ALTER TABLE hoadon
+DROP COLUMN loaihd;

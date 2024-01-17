@@ -55,9 +55,70 @@ SELECT nhacungcap.mancc,COUNT(mahang) as 'Số mặt hàng của nhà cung cấp
 
 SELECT nhacungcap.mahang,COUNT(mancc) as N'Số nhà cung cấp, cung cấp mặt hàng' FROM nhacungcap  group by mahang
 
+select chitiet.mahd,sum(chitiet.slban) from chitiet
+where chitiet.mahang in('mh01', 'mh02')
+group by chitiet.mahd
+
+select top 3 dmhang.slton from dmhang order by dmhang.slton desc
+
+select top 1 * from dmhang order by dmhang.slton asc
+
+select mancc, count(mahang) from nhacungcap where diachi like N'%Đà Nẵng%' group by mancc
+
+select hoadon.loaihd , count(*) from hoadon group by hoadon.loaihd
+
+SELECT * FROM hoadon WHERE ngayhd BETWEEN '2024-01-01' AND '2024-01-31';
+
+SELECT * FROM hoadon WHERE MONTH(ngayhd) = 1;
+
+SELECT * FROM hoadon WHERE ngaygh BETWEEN '2024-02-01' AND '2024-02-30';
+
+SELECT * FROM hoadon WHERE MONTH(ngaygh) = 2;
+
+select count(mahd) from hoadon group by ngaygh 
+
+SELECT MONTH(ngaygh) AS N'Tháng', COUNT(*) AS N'Số lượng hóa đơn'
+FROM hoadon GROUP BY MONTH(ngaygh);
+
+SELECT hoadon.*, DATEDIFF(day, NGAYHD, NGAYGH) AS N'Số ngày chênh lệch'
+FROM HOADON WHERE DATEDIFF(day, NGAYHD, NGAYGH) >= 3;
+
+SELECT COUNT(*) AS so_luong_hoa_don
+FROM hoadon WHERE DATEDIFF(day, ngayhd, ngaygh) >= 3;
+
+select count(*) from hoadon group by ngayhd
+
+SELECT MONTH(ngayhd) AS thang,
+COUNT(DISTINCT mahd) AS N'Số lượng khách hàng mỗi tháng'
+FROM hoadon
+GROUP BY MONTH(ngayhd);
+
+WITH DanhSachKhachThang AS (
+    SELECT MONTH(NGAYHD) AS Thang, COUNT(MAKH) AS LuongKhach
+    FROM HOADON GROUP BY MONTH(NGAYHD)
+)
+SELECT Thang, LuongKhach
+FROM DanhSachKhachThang
+WHERE LuongKhach = (SELECT MAX(LuongKhach) FROM DanhSachKhachThang) OR 
+LuongKhach = (SELECT MIN(LuongKhach) FROM DanhSachKhachThang);
+
+
+select * from khachhang, hoadon, dmhang, chitiet, nhacungcap 
+where khachhang.makh = hoadon.makh and
+hoadon.mahd = chitiet.mahd and
+dmhang.mahang = nhacungcap.mahang and
+dmhang.mahang = chitiet.mahang 
 
 select * from khachhang
 select * from dmhang
 select * from hoadon
 select * from chitiet
 select * from nhacungcap
+
+
+select count(*) from khachhang
+select count(*) from hoadon
+select count(*) from dmhang
+select count(*) from chitiet
+select count(*) from nhacungcap
+
