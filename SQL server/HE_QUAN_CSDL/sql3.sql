@@ -1,9 +1,8 @@
-﻿
+﻿use QUANLYBANHANG
 
 select * from khachhang where diachi = N'Đà Nẵng'
 select * from khachhang where diachi like N'%Đà%'
 SELECT * FROM khachhang WHERE sodt LIKE N'%0915%495%';
-
 
 SELECT * FROM khachhang WHERE hoten LIKE N'H%';
 
@@ -71,7 +70,7 @@ SELECT * FROM hoadon WHERE ngayhd BETWEEN '2024-01-01' AND '2024-01-31';
 
 SELECT * FROM hoadon WHERE MONTH(ngayhd) = 1;
 
-SELECT * FROM hoadon WHERE ngaygh BETWEEN '2024-02-01' AND '2024-02-30';
+SELECT * FROM hoadon WHERE ngaygh BETWEEN '2024-02-01' AND '2024-02-29';
 
 SELECT * FROM hoadon WHERE MONTH(ngaygh) = 2;
 
@@ -102,6 +101,33 @@ FROM DanhSachKhachThang
 WHERE LuongKhach = (SELECT MAX(LuongKhach) FROM DanhSachKhachThang) OR 
 LuongKhach = (SELECT MIN(LuongKhach) FROM DanhSachKhachThang);
 
+
+select * from hoadon, chitiet where hoadon.mahd = chitiet.mahd and (chitiet.dongia * chitiet.slban) >= 3000000
+
+SELECT SUM(chitiet.dongia * chitiet.slban) AS tong_tien
+FROM hoadon, chitiet where hoadon.mahd = chitiet.mahd
+GROUP BY hoadon.mahd;
+
+select hoadon.mahd,SUM(slban * dongia) 
+from hoadon, chitiet 
+where hoadon.mahd = chitiet.mahd
+group by hoadon.mahd 
+having sum(slban * dongia)  >= 3000000
+
+select top 3 hoadon.mahd,SUM(slban * dongia) 
+from hoadon, chitiet 
+where hoadon.mahd = chitiet.mahd
+group by hoadon.mahd 
+having sum(slban * dongia)  >= 3000000 
+order by sum(slban * dongia) desc
+
+
+select hoadon.mahd, count(chitiet.mahang) 
+from hoadon, chitiet, dmhang 
+where hoadon.mahd = chitiet.mahd and
+dmhang.mahang = chitiet.mahang
+group by hoadon.mahd
+having count(chitiet.mahang) >= 2
 
 select * from khachhang, hoadon, dmhang, chitiet, nhacungcap 
 where khachhang.makh = hoadon.makh and
