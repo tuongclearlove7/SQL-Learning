@@ -91,4 +91,7 @@ select * from nhacungcap
 select mahd,COUNT(mahang) from chitiet where mahd = 'hd02' group by mahd
 
 
+DROP PROCEDURE IF EXISTS SoluongHoadonCuaKhachHang;
+
+
 
