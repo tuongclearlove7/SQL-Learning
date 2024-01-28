@@ -22,7 +22,6 @@ CREATE TABLE chucvu (
     macv VARCHAR(20) PRIMARY KEY,
 	tencv NVARCHAR(255),
 	hscv decimal,
-	manv VARCHAR(20),
 
 );
 
@@ -37,10 +36,25 @@ ALTER TABLE nhanvien
 ADD CONSTRAINT nhanvien_Fk_phongban
     FOREIGN KEY (mapb) REFERENCES phongban(mapb);
 
-ALTER TABLE chucvu
-ADD CONSTRAINT chucvu_Fk_nhanvien
-    FOREIGN KEY (manv) REFERENCES nhanvien(manv);
+ALTER TABLE nhanvien
+ADD CONSTRAINT nhanvien_Fk_chucvu
+    FOREIGN KEY (macv) REFERENCES chucvu(macv);
 
 ALTER TABLE hesoluong
 ADD CONSTRAINT hesoluong_Fk_nhanvien
     FOREIGN KEY (manv) REFERENCES nhanvien(manv);
+
+
+ALTER TABLE chucvu
+DROP CONSTRAINT chucvu_Fk_nhanvien;
+
+ALTER TABLE chucvu
+DROP COLUMN manv;
+
+ALTER TABLE nhanvien
+add macv varchar(20);
+
+
+
+
+

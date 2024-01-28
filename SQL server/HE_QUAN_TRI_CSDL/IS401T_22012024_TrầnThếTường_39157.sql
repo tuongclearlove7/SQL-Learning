@@ -50,8 +50,7 @@ begin
 	from hoadon 
 	where MONTH(ngaygh) = @thang group by MONTH(ngaygh)
 end
-exec SoDonHangDaGiaoTrongThang
-@thang = 7
+exec SoDonHangDaGiaoTrongThang @thang = 7
 
 -- cau 5
 CREATE PROCEDURE ThongTinMatHangTheoNhaCungCap
