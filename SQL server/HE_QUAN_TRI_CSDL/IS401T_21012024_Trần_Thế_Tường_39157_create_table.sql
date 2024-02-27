@@ -32,6 +32,21 @@ CREATE TABLE hesoluong (
 
 );
 
+CREATE TABLE tamung (
+    matu INT PRIMARY KEY,
+    manv VARCHAR(20),
+    TONGTIEN DECIMAL(10, 2),
+);
+
+CREATE TABLE ct_tamung (
+    stt INT PRIMARY KEY,
+    ngaythang DATE,
+    manv VARCHAR(20),
+    matu INT,
+    sotien DECIMAL(10, 2),
+   
+);
+
 ALTER TABLE nhanvien
 ADD CONSTRAINT nhanvien_Fk_phongban
     FOREIGN KEY (mapb) REFERENCES phongban(mapb);
@@ -43,6 +58,18 @@ ADD CONSTRAINT nhanvien_Fk_chucvu
 ALTER TABLE hesoluong
 ADD CONSTRAINT hesoluong_Fk_nhanvien
     FOREIGN KEY (manv) REFERENCES nhanvien(manv);
+
+ALTER TABLE tamung
+ADD CONSTRAINT tamung_Fk_nhanvien
+    FOREIGN KEY (manv) REFERENCES nhanvien(manv);
+
+ALTER TABLE ct_tamung
+ADD CONSTRAINT ct_tamung_Fk_nhanvien
+    FOREIGN KEY (manv) REFERENCES nhanvien(manv);
+
+ALTER TABLE ct_tamung
+ADD CONSTRAINT ct_tamung_Fk_tamung
+    FOREIGN KEY (matu) REFERENCES tamung(matu);
 
 
 ALTER TABLE chucvu

@@ -55,6 +55,16 @@ create table chitiet(
 
 )
 
+create table dathang(
+
+	
+	madh varchar(5),
+	mahang varchar(5),
+	sldat int,
+
+
+)
+
 ALTER TABLE hoadon
 ADD CONSTRAINT hoadon_Fk_khachhang
     FOREIGN KEY (makh) REFERENCES khachhang(makh);
@@ -70,6 +80,10 @@ ADD CONSTRAINT chitiet_Fk_dmhang
 ALTER TABLE chitiet
 ADD CONSTRAINT chitiet_Fk_hoadon
     FOREIGN KEY (mahd) REFERENCES hoadon(mahd);
+
+ALTER TABLE dathang
+ADD CONSTRAINT dathang_Fk_dmhang
+    FOREIGN KEY (mahang) REFERENCES dmhang(mahang);
 
 drop table khachhang
 drop table hoadon

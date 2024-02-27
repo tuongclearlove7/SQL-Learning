@@ -51,6 +51,19 @@ INSERT INTO hesoluong (thang, hsl, manv) VALUES
 (5, 1.7, 'nv04'),
 (5, 1.5, 'nv05');
 
+
+INSERT INTO TAMUNG (MATU, MANV, TONGTIEN) VALUES
+(1, 'nv01', 500000.00),
+(2, 'nv02', 700000.00),
+(3, 'nv03', 600000.00),
+(4, 'nv04', 800000.00),
+(5, 'nv04', 900000.00),
+(6, 'nv05', 750000.00),
+(7, 'nv05', 600000.00),
+(8, 'nv02', 850000.00),
+(9, 'nv03', 700000.00),
+(10, 'nv01', 750000.00);
+
 select * from nhanvien, phongban, chucvu, hesoluong
 where phongban.mapb = nhanvien.mapb and
 nhanvien.manv = chucvu.manv and

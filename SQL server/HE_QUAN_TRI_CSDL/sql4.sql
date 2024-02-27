@@ -45,4 +45,3 @@ exec DANHSACH_HOADON 'hd01', N'Mua'
 select * from khachhang
 select * from hoadon
 select * from dmhang
-select * from chitiet
