@@ -65,8 +65,21 @@ create table dathang(
 
 )
 
+
+create table taikhoan(
+
+	matk varchar(20) primary key,
+	makh varchar(5),
+	sotien decimal
+
+)
+
 ALTER TABLE hoadon
 ADD CONSTRAINT hoadon_Fk_khachhang
+    FOREIGN KEY (makh) REFERENCES khachhang(makh);
+
+ALTER TABLE taikhoan
+ADD CONSTRAINT taikhoan_Fk_khachhang
     FOREIGN KEY (makh) REFERENCES khachhang(makh);
 
 ALTER TABLE nhacungcap
